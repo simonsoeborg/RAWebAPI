@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "9kgOWOOVIVezYZ3JNSn8un6w0ZDuEy7wtzBIg326MQN8W/lWK8cvFqUFHKpImcbQl5YbNZoWfMR8yRgDMl1qTQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\simon_k33m7ql\\source\\repos\\RAWebAPI\\RAWebAPI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\simon_k33m7ql\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\simon_k33m7ql\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\simon_k33m7ql\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.14\\microsoft.visualstudio.azure.containers.tools.targets.1.10.14.nupkg.sha512",
+    "C:\\Users\\simon_k33m7ql\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "C:\\Users\\simon_k33m7ql\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\simon_k33m7ql\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "C:\\Users\\simon_k33m7ql\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": []
+}
