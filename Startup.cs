@@ -12,6 +12,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using RAWebAPI.Models;
 
 namespace RAWebAPI
 {
@@ -28,16 +30,27 @@ namespace RAWebAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            });
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RAWebAPI", Version = "v1" });
             });
+
+            services.AddDbContext<DatabaseContext>(options =>
+                options.UseMySQL(Configuration.GetConnectionString("Default")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+            app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
