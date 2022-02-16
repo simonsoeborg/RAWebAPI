@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  rawebapi:
+    image: ${DOCKER_REGISTRY-}rawebapi
+    build:
+      context: .
+      dockerfile: Dockerfile
