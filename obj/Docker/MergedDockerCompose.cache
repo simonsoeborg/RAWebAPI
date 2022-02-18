@@ -1,0 +1,34 @@
+services:
+  rawebapi:
+    build:
+      context: C:\Users\simon_k33m7ql\source\repos\RAWebAPI
+      dockerfile: Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: https://+:443;http://+:5002
+    image: rawebapi
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 5002
+      protocol: tcp
+    - mode: ingress
+      target: 443
+      protocol: tcp
+    volumes:
+    - type: bind
+      source: C:\Users\simon_k33m7ql\AppData\Roaming/Microsoft/UserSecrets
+      target: /root/.microsoft/usersecrets
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\simon_k33m7ql\AppData\Roaming/ASP.NET/Https
+      target: /root/.aspnet/https
+      read_only: true
+      bind:
+        create_host_path: true
+networks:
+  default:
+    name: dockercompose14654648769473000584_default

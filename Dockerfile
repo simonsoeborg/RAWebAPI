@@ -2,8 +2,9 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
+EXPOSE 5002/tcp
+ENV ASPNETCORE_URLS http://*:5002
+ENV ASPNETCORE_ENVIRONMENT docker
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
