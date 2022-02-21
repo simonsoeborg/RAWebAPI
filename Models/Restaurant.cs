@@ -10,6 +10,7 @@ namespace RAWebAPI.Models
         public int Id { get; set; }
         public String RestaurantName { get; set; }
         public String  OwnerName { get; set; }
+        public int OwnerID { get; set; }
 
     }
 }
