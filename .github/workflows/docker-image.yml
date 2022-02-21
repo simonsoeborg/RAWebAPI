@@ -12,14 +12,11 @@ jobs:
     runs-on: self-hosted
     defaults:
       run:
-        working-directory: /home/server/62597-backend/
+        working-directory: /home/server/62597-backend/RAWebAPI
 
     steps:
-    - name: Remove Old Files
-      run: sudo rm -R RAWebAPI
-
     - name: Pull project down from github
-      run: git clone --branch Production https://github.com/simonsoeborg/RAWebAPI.git
+      run: sudo git pull
       
     - name: Stop Docker
       run: sudo docker stop backend_api
