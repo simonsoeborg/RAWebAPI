@@ -26,7 +26,7 @@ jobs:
       
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: sudo docker build -t backendimage -f Dockerfile ./RAWebAPI/
+      run: sudo docker build -t backendimage -f ./RAWebAPI/Dockerfile .
       
     - name: Run Docker
       run: sudo docker run --rm -d -p 5002:5002 --name backend_api backendimage
