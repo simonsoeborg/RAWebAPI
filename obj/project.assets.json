@@ -7735,24 +7735,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Fridolf\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\simon_k33m7ql\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Fridolf\\Source\\Repos\\RAWebAPI\\RAWebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\simon_k33m7ql\\source\\repos\\RAWebAPI\\RAWebAPI.csproj",
       "projectName": "RAWebAPI",
-      "projectPath": "C:\\Users\\Fridolf\\Source\\Repos\\RAWebAPI\\RAWebAPI.csproj",
-      "packagesPath": "C:\\Users\\Fridolf\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Fridolf\\Source\\Repos\\RAWebAPI\\obj\\",
+      "projectPath": "C:\\Users\\simon_k33m7ql\\source\\repos\\RAWebAPI\\RAWebAPI.csproj",
+      "packagesPath": "C:\\Users\\simon_k33m7ql\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\simon_k33m7ql\\source\\repos\\RAWebAPI\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Fridolf\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\simon_k33m7ql\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7827,7 +7822,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }
