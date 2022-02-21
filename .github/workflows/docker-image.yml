@@ -16,7 +16,7 @@ jobs:
 
     steps:
     - name: Pull project down from github
-      run: git pull origin Production
+      run: git clone --branch Production https://github.com/simonsoeborg/RAWebAPI.git
       
     - name: Stop Docker
       run: docker stop backendAPI
