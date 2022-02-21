@@ -17,6 +17,6 @@ namespace RAWebAPI.Models
 
         public DbSet<RAWebAPI.Models.User> User { get; set; }
 
-        public DbSet<RAWebAPI.Models.Restaurant> Restaurant { get; set; }
+        public DbSet<RAWebAPI.Models.Restaurant> RestaurantListView { get; set; }
     }
 }
