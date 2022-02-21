@@ -22,11 +22,11 @@ jobs:
       run: git clone --branch Production https://github.com/simonsoeborg/RAWebAPI.git
       
     - name: Stop Docker
-      run: docker stop backendAPI
+      run: sudo docker stop backendAPI
       
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag backendImage:$(date +%s)
+      run: sudo docker build . --file Dockerfile --tag backendImage:$(date +%s)
       
     - name: Run Docker
-      run: docker run --rm -d -p 5002:5002 --name backendAPI backendImage
+      run: sudo docker run --rm -d -p 5002:5002 --name backendAPI backendImage
