@@ -1,3 +1,4 @@
+
 name: Docker Image CI
 
 on:
@@ -9,21 +10,10 @@ on:
 jobs:
 
   build:
+
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: /home/server/62597-backend/RAWebAPI/
 
     steps:
-    - name: Pull project down from github
-      run: git pull origin Production
-      
-    - name: Stop Docker
-      run: docker stop backendAPI
-      
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag backendImage:$(date +%s)
-      
-    - name: Run Docker
-      run: docker run --rm -d -p 5002:5002 --name backendAPI backendImage
+      run: docker build . --file Dockerfile --tag backend:$(date +%s)
