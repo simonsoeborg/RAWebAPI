@@ -17,13 +17,6 @@ jobs:
     steps:
     - name: Pull project down from github
       run: sudo git pull
-      
-    - name: Stop Docker
-      run: sudo docker stop backend_api
-      
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: sudo docker build -t backendimage -f Dockerfile .
-      
-    - name: Run Docker
-      run: sudo docker run --rm -d -p 5002:5002 --name backend_api backendimage
+            
+    - name: Run Docker-Compose
+      run: sudo docker-compose -f docker-compose.yml up -d --build
