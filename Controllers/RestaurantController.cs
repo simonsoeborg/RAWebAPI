@@ -24,14 +24,14 @@ namespace RAWebAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Restaurant>>> GetResturant()
         {
-            return await _context.Resturant.ToListAsync();
+            return await _context.Restaurant.ToListAsync();
         }
 
         // GET: api/Restaurant/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Restaurant>> GetRestaurant(int id)
         {
-            var restaurant = await _context.Resturant.FindAsync(id);
+            var restaurant = await _context.Restaurant.FindAsync(id);
 
             if (restaurant == null)
             {
@@ -77,7 +77,7 @@ namespace RAWebAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Restaurant>> PostRestaurant(Restaurant restaurant)
         {
-            _context.Resturant.Add(restaurant);
+            _context.Restaurant.Add(restaurant);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetRestaurant", new { id = restaurant.Id }, restaurant);
@@ -87,13 +87,13 @@ namespace RAWebAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRestaurant(int id)
         {
-            var restaurant = await _context.Resturant.FindAsync(id);
+            var restaurant = await _context.Restaurant.FindAsync(id);
             if (restaurant == null)
             {
                 return NotFound();
             }
 
-            _context.Resturant.Remove(restaurant);
+            _context.Restaurant.Remove(restaurant);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -101,7 +101,7 @@ namespace RAWebAPI.Controllers
 
         private bool RestaurantExists(int id)
         {
-            return _context.Resturant.Any(e => e.Id == id);
+            return _context.Restaurant.Any(e => e.Id == id);
         }
     }
 }
