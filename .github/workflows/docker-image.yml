@@ -13,6 +13,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    
+    
+    - name: Pull project down from github
+      run: git pull origin Production
+      
+    - name: Stop Docker
+      run: docker stop backend
+      
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag backend:$(date +%s)
+      
+    - name: Run Docker
+      run: docker run --rm -d -p 5000:5000 --name backend backend
