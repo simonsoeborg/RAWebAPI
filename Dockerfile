@@ -8,7 +8,7 @@ ENV ASPNETCORE_ENVIRONMENT docker
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["../RAWebAPI.csproj", "."]
+COPY ["RAWebAPI.csproj", "."]
 RUN dotnet restore "RAWebAPI.csproj"
 COPY . .
 WORKDIR "/src/"
