@@ -5,13 +5,9 @@ using System.Threading.Tasks;
 
 namespace RAWebAPI.Models
 {
-    public static class Roles
+    public class Roles
     {
-        public const string
-            Administrator = "Administrator",
-            RestaurantOwner = "RestaurantOwner",
-            Waiter = "Waiter",
-            Host = "Host",
-            KitchenStaff = "KitchenStaff";
+        public int Id { get; set; }
+        public String Val { get; set; }
     }
 }
