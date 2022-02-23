@@ -5,13 +5,12 @@ using System.Threading.Tasks;
 
 namespace RAWebAPI.Models
 {
-    public class User
+    public class UserRoles
     {
         public int Id { get; set; }
         public String Name { get; set; }
-        public int RoleId { get; set; }
-        public DateTime CreatedAt { get; set; }
         public String Email { get; set; }
-        public String Password { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public String Roles { get; set; }
     }
 }
