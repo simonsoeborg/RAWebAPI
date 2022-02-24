@@ -11,37 +11,36 @@ namespace RAWebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ViewRestaurantController : ControllerBase
+    public class ViewRestaurantInfoController : ControllerBase
     {
-
-        //This view controler is for accesing a sql-view a there for only contains Get requests. 
-
         private readonly DatabaseContext _context;
 
-        public ViewRestaurantController(DatabaseContext context)
+        public ViewRestaurantInfoController(DatabaseContext context)
         {
             _context = context;
         }
 
-        // GET: api/Restaurant
+        // GET: api/ViewRestaurantInfo
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Restaurant>>> GetRestaurant()
+        public async Task<ActionResult<IEnumerable<ViewRestaurantInfo>>> GetRestaurantListView()
         {
             return await _context.RestaurantListView.ToListAsync();
         }
 
-        // GET: api/Restaurant/5
+        // GET: api/ViewRestaurantInfo/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Restaurant>> GetRestaurant(int id)
+        public async Task<ActionResult<ViewRestaurantInfo>> GetViewRestaurantInfo(int id)
         {
-            var restaurant = await _context.RestaurantListView.FindAsync(id);
+            var viewRestaurantInfo = await _context.RestaurantListView.FindAsync(id);
 
-            if (restaurant == null)
+            if (viewRestaurantInfo == null)
             {
                 return NotFound();
             }
 
-            return restaurant;
+            return viewRestaurantInfo;
         }
+
+ 
     }
 }
