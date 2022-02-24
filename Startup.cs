@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using RAWebAPI.Models;
 
@@ -43,6 +44,19 @@ namespace RAWebAPI
 
             services.AddDbContext<DatabaseContext>(options =>
                 options.UseMySQL(Configuration.GetConnectionString("Default")));
+
+
+            // Auth0 API
+            // 1. Add Authentication Services
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = "https://simonsoeborg.eu.auth0.com/";
+                options.Audience = "http://api.uglyrage.com";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,6 +82,9 @@ namespace RAWebAPI
             {
                 endpoints.MapControllers();
             });
+
+            app.UseAuthentication();
+
         }
     }
 }
