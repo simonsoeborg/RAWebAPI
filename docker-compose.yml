@@ -1,0 +1,10 @@
+version: "3.1"
+services:
+  rawebapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5002:5002"
+    volumes:
+      - ./src:/app/src
