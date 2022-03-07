@@ -28,5 +28,7 @@ namespace RAWebAPI.Models
         public DbSet<RAWebAPI.Models.Roles> Roles { get; set; }
 
         public DbSet<RAWebAPI.Models.resOrders> resOrders { get; set; }
+
+        public DbSet<RAWebAPI.Models.Auth> Auth { get; set; }
     }
 }
