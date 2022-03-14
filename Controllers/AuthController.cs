@@ -46,7 +46,7 @@ namespace RAWebAPI.Controllers
             }
             catch (DbUpdateException)
             {
-                if (AuthExists(auth.Token))
+                if (AuthExists(auth.Email))
                 {
                     return Conflict();
                 }
@@ -56,12 +56,12 @@ namespace RAWebAPI.Controllers
                 }
             }
 
-            return CreatedAtAction("GetAuth", new { id = auth.Token }, auth);
+            return CreatedAtAction("GetAuth", new { id = auth.Email }, auth);
         }
 
         private bool AuthExists(string id)
         {
-            return _context.Auth.Any(e => e.Token == id);
+            return _context.Auth.Any(e => e.Email == id);
         }
     }
 }
