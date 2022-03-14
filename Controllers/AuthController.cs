@@ -20,13 +20,6 @@ namespace RAWebAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Auth
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Auth>>> GetAuth()
-        {
-            return await _context.Auth.ToListAsync();
-        }
-
         // GET: api/Auth/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Auth>> GetAuth(string id)
@@ -39,37 +32,6 @@ namespace RAWebAPI.Controllers
             }
 
             return auth;
-        }
-
-        // PUT: api/Auth/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAuth(string id, Auth auth)
-        {
-            if (id != auth.Token)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(auth).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!AuthExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
         }
 
         // POST: api/Auth
@@ -95,22 +57,6 @@ namespace RAWebAPI.Controllers
             }
 
             return CreatedAtAction("GetAuth", new { id = auth.Token }, auth);
-        }
-
-        // DELETE: api/Auth/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAuth(string id)
-        {
-            var auth = await _context.Auth.FindAsync(id);
-            if (auth == null)
-            {
-                return NotFound();
-            }
-
-            _context.Auth.Remove(auth);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
         }
 
         private bool AuthExists(string id)
