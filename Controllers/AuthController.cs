@@ -20,11 +20,11 @@ namespace RAWebAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Auth/5
+        // GET: api/Auth/{email}
         [HttpGet("{id}")]
-        public async Task<ActionResult<Auth>> GetAuth(string id)
+        public async Task<ActionResult<Auth>> GetAuth(string email)
         {
-            var auth = await _context.Auth.FindAsync(id);
+            var auth = await _context.Auth.FindAsync(email);
 
             if (auth == null)
             {
