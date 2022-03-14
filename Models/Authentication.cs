@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RAWebAPI.Models
 {
-    public class Auth
+    public class Authentication
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -21,8 +21,6 @@ namespace RAWebAPI.Models
         public string Picture { get; set; }
 
         public string Sub { get; set; }
-        public string Role { get; set; }
-        public int Pin { get; set; }
-        public string UserEmail { get; set; }
+        public int RoleId { get; set; }
     }
 }
