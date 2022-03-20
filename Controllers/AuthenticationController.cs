@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -58,7 +59,7 @@ namespace RAWebAPI.Controllers
                     }
                 }
 
-                return CreatedAtAction("GetAuthentication", new { id = authentication.Email }, authentication);
+                return CreatedAtAction("PostAuthentication", new { id = authentication.Email }, authentication);
             }
             else
             {
