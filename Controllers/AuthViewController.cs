@@ -11,11 +11,11 @@ namespace RAWebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController : ControllerBase
+    public class AuthViewController : ControllerBase
     {
         private readonly DatabaseContext _context;
 
-        public AuthController(DatabaseContext context)
+        public AuthViewController(DatabaseContext context)
         {
             _context = context;
         }
@@ -24,7 +24,7 @@ namespace RAWebAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<AuthView>> GetAuth(string email)
         {
-            var auth = await _context.Auth.FindAsync(email);
+            var auth = await _context.AuthView.FindAsync(email);
 
             if (auth == null)
             {
@@ -36,7 +36,7 @@ namespace RAWebAPI.Controllers
 
         private bool AuthExists(string id)
         {
-            return _context.Auth.Any(e => e.Email == id);
+            return _context.AuthView.Any(e => e.Email == id);
         }
     }
 }
