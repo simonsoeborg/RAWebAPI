@@ -19,7 +19,6 @@ namespace RAWebAPI.Models
         public string Name { get; set; }
         public string Nickname { get; set; }
         public string Picture { get; set; }
-
         public string Sub { get; set; }
         public int RoleId { get; set; }
     }
