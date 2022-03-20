@@ -39,24 +39,31 @@ namespace RAWebAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Authentication>> PostAuthentication(Authentication authentication)
         {
-            _context.Authentication.Add(authentication);
-            try
+            if (await _context.Authentication.FindAsync(authentication.Email) == null)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (AuthenticationExists(authentication.Email))
+                _context.Authentication.Add(authentication);
+                try
                 {
-                    return Conflict();
+                    await _context.SaveChangesAsync();
                 }
-                else
+                catch (DbUpdateException)
                 {
-                    throw;
+                    if (AuthenticationExists(authentication.Email))
+                    {
+                        return Conflict();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
-            }
 
-            return CreatedAtAction("GetAuthentication", new { id = authentication.Email }, authentication);
+                return CreatedAtAction("GetAuthentication", new { id = authentication.Email }, authentication);
+            }
+            else
+            {
+                return await GetAuthentication(authentication.Email);
+            }
         }
 
         // DELETE: api/Authentication/5
