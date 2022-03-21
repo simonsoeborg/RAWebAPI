@@ -11,27 +11,27 @@ namespace RAWebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TableController : ControllerBase
+    public class SeatingTableController : ControllerBase
     {
         private readonly DatabaseContext _context;
 
-        public TableController(DatabaseContext context)
+        public SeatingTableController(DatabaseContext context)
         {
             _context = context;
         }
 
         // GET: api/Table
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Table>>> GetTable()
+        public async Task<ActionResult<IEnumerable<SeatingTable>>> GetTable()
         {
-            return await _context.Table.ToListAsync();
+            return await _context.SeatingTable.ToListAsync();
         }
 
         // GET: api/Table/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Table>> GetTable(int id)
+        public async Task<ActionResult<SeatingTable>> GetTable(int id)
         {
-            var table = await _context.Table.FindAsync(id);
+            var table = await _context.SeatingTable.FindAsync(id);
 
             if (table == null)
             {
@@ -44,7 +44,7 @@ namespace RAWebAPI.Controllers
         // PUT: api/Table/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTable(int id, Table table)
+        public async Task<IActionResult> PutTable(int id, SeatingTable table)
         {
             if (id != table.Id)
             {
@@ -75,9 +75,9 @@ namespace RAWebAPI.Controllers
         // POST: api/Table
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Table>> PostTable(Table table)
+        public async Task<ActionResult<SeatingTable>> PostTable(SeatingTable table)
         {
-            _context.Table.Add(table);
+            _context.SeatingTable.Add(table);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetTable", new { id = table.Id }, table);
@@ -87,13 +87,13 @@ namespace RAWebAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTable(int id)
         {
-            var table = await _context.Table.FindAsync(id);
+            var table = await _context.SeatingTable.FindAsync(id);
             if (table == null)
             {
                 return NotFound();
             }
 
-            _context.Table.Remove(table);
+            _context.SeatingTable.Remove(table);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -101,7 +101,7 @@ namespace RAWebAPI.Controllers
 
         private bool TableExists(int id)
         {
-            return _context.Table.Any(e => e.Id == id);
+            return _context.SeatingTable.Any(e => e.Id == id);
         }
     }
 }

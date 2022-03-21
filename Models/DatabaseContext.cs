@@ -33,6 +33,6 @@ namespace RAWebAPI.Models
 
         public DbSet<RAWebAPI.Models.Authentication> Authentication { get; set; }
 
-        public DbSet<RAWebAPI.Models.Table> Table { get; set; }
+        public DbSet<RAWebAPI.Models.SeatingTable> SeatingTable { get; set; }
     }
 }
