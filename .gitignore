@@ -2,3 +2,4 @@ obj/Debug/
 .vs/RAWebAPI/v16
 .vs
 bin/
+bin/Debug/net5.0/
