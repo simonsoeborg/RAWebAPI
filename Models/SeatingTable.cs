@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace RAWebAPI.Models
 {
-    public class Table
+    public class SeatingTable
     {
         public int Id { get; set; }
         public Boolean isReserved { get; set; }
