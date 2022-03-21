@@ -21,5 +21,6 @@ namespace RAWebAPI.Models
         public string Picture { get; set; }
         public string Sub { get; set; }
         public int RoleId { get; set; }
+        public int Pin { get; set; }
     }
 }

@@ -38,7 +38,7 @@ namespace RAWebAPI.Controllers
         // POST: api/Authentication
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Authentication>> PostAuthentication(Authentication authentication)
+        public async Task<ActionResult<Auth>> PostAuthentication(Authentication authentication)
         {
             if (await _context.Authentication.FindAsync(authentication.Email) == null)
             {
@@ -58,13 +58,24 @@ namespace RAWebAPI.Controllers
                         throw;
                     }
                 }
+                return await GetAuth(authentication.Email);
+                // return CreatedAtAction("PostAuthentication", new { id = authentication.Email }, authentication);
+            }
+            return await GetAuth(authentication.Email);
+        }
 
-                return CreatedAtAction("PostAuthentication", new { id = authentication.Email }, authentication);
-            }
-            else
+        // GET: api/Authentication/5
+        [HttpGet("Auth/{email}")]
+        public async Task<ActionResult<Auth>> GetAuth(string email)
+        {
+            var auth = await _context.Auth.FindAsync(email);
+
+            if (auth == null)
             {
-                return await GetAuthentication(authentication.Email);
+                return NotFound();
             }
+
+            return auth;
         }
 
         // DELETE: api/Authentication/5
