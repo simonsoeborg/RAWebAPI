@@ -7,21 +7,20 @@ using System.Threading.Tasks;
 
 namespace RAWebAPI.Models
 {
-    public class AuthView
+    public class Auth
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [StringLength(455)]
         public string Email { get; set; }
-        public bool Email_verified { get; set; }
-        public string Family_name { get; set; }
-        public string Given_name { get; set; }
+        public bool EmailVerified { get; set; }
+        public string FamilyName { get; set; }
+        public string GivenName { get; set; }
         public string Name { get; set; }
         public string Nickname { get; set; }
         public string Picture { get; set; }
         public string Sub { get; set; }
         public string Role { get; set; }
         public int Pin { get; set; }
-        public string UserEmail { get; set; }
     }
 }
