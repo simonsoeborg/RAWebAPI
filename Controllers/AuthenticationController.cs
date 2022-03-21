@@ -40,6 +40,7 @@ namespace RAWebAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Auth>> PostAuthentication(Authentication authentication)
         {
+            HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
             if (await _context.Authentication.FindAsync(authentication.Email) == null)
             {
                 _context.Authentication.Add(authentication);
@@ -64,7 +65,7 @@ namespace RAWebAPI.Controllers
             return await GetAuth(authentication.Email);
         }
 
-        // GET: api/Authentication/5
+        // GET: api/Authentication/Auth/email
         [HttpGet("Auth/{email}")]
         public async Task<ActionResult<Auth>> GetAuth(string email)
         {
