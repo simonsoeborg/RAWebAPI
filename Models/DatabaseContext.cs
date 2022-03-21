@@ -29,7 +29,7 @@ namespace RAWebAPI.Models
 
         public DbSet<RAWebAPI.Models.resOrders> resOrders { get; set; }
 
-        public DbSet<RAWebAPI.Models.Auth> Auth { get; }
+        public DbSet<RAWebAPI.Models.Auth> Auth { get; set; }
 
         public DbSet<RAWebAPI.Models.Authentication> Authentication { get; set; }
     }
