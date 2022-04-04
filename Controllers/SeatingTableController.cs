@@ -72,32 +72,8 @@ namespace RAWebAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/SeatingTable
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<SeatingTable>> PostSeatingTable(SeatingTable seatingTable)
-        {
-            _context.SeatingTable.Add(seatingTable);
-            await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetSeatingTable", new { id = seatingTable.Id }, seatingTable);
-        }
-
-        // DELETE: api/SeatingTable/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteSeatingTable(int id)
-        {
-            var seatingTable = await _context.SeatingTable.FindAsync(id);
-            if (seatingTable == null)
-            {
-                return NotFound();
-            }
-
-            _context.SeatingTable.Remove(seatingTable);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
+        // Delete and post can be addded if they layout of the resturant becomes able. 
 
         private bool SeatingTableExists(int id)
         {
