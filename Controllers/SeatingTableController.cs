@@ -20,38 +20,38 @@ namespace RAWebAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Table
+        // GET: api/SeatingTable
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<SeatingTable>>> GetTable()
+        public async Task<ActionResult<IEnumerable<SeatingTable>>> GetSeatingTable()
         {
             return await _context.SeatingTable.ToListAsync();
         }
 
-        // GET: api/Table/5
+        // GET: api/SeatingTable/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<SeatingTable>> GetTable(int id)
+        public async Task<ActionResult<SeatingTable>> GetSeatingTable(int id)
         {
-            var table = await _context.SeatingTable.FindAsync(id);
+            var seatingTable = await _context.SeatingTable.FindAsync(id);
 
-            if (table == null)
+            if (seatingTable == null)
             {
                 return NotFound();
             }
 
-            return table;
+            return seatingTable;
         }
 
-        // PUT: api/Table/5
+        // PUT: api/SeatingTable/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTable(int id, SeatingTable table)
+        public async Task<IActionResult> PutSeatingTable(int id, SeatingTable seatingTable)
         {
-            if (id != table.Id)
+            if (id != seatingTable.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(table).State = EntityState.Modified;
+            _context.Entry(seatingTable).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace RAWebAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TableExists(id))
+                if (!SeatingTableExists(id))
                 {
                     return NotFound();
                 }
@@ -72,34 +72,10 @@ namespace RAWebAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Table
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<SeatingTable>> PostTable(SeatingTable table)
-        {
-            _context.SeatingTable.Add(table);
-            await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTable", new { id = table.Id }, table);
-        }
+        // Delete and post can be addded if they layout of the resturant becomes able. 
 
-        // DELETE: api/Table/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTable(int id)
-        {
-            var table = await _context.SeatingTable.FindAsync(id);
-            if (table == null)
-            {
-                return NotFound();
-            }
-
-            _context.SeatingTable.Remove(table);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool TableExists(int id)
+        private bool SeatingTableExists(int id)
         {
             return _context.SeatingTable.Any(e => e.Id == id);
         }
