@@ -8,7 +8,6 @@ namespace RAWebAPI.Models
     public class SeatingTable
     {
         public int Id { get; set; }
-        public Boolean isReserved { get; set; }
         public Boolean isInUse { get; set; }
     }
 }
