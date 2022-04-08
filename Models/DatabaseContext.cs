@@ -27,12 +27,14 @@ namespace RAWebAPI.Models
 
         public DbSet<RAWebAPI.Models.Roles> Roles { get; set; }
 
-        public DbSet<RAWebAPI.Models.resOrders> resOrders { get; set; }
-
         public DbSet<RAWebAPI.Models.Auth> Auth { get; set; }
 
         public DbSet<RAWebAPI.Models.Authentication> Authentication { get; set; }
 
         public DbSet<RAWebAPI.Models.SeatingTable> SeatingTable { get; set; }
+
+        public DbSet<RAWebAPI.Models.Order> Order { get; set; }
+
+        public DbSet<RAWebAPI.Models.OrderInfo> OrderInfo { get; set; }
     }
 }
