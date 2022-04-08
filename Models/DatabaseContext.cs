@@ -36,5 +36,7 @@ namespace RAWebAPI.Models
         public DbSet<RAWebAPI.Models.Order> Order { get; set; }
 
         public DbSet<RAWebAPI.Models.OrderInfo> OrderInfo { get; set; }
+
+        public DbSet<RAWebAPI.Models.OrderOverviewView> OrderOverviewView { get; set; }
     }
 }
