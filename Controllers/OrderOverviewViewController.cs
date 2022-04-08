@@ -31,14 +31,16 @@ namespace RAWebAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<IEnumerable<OrderOverviewView>>> GetOrderOverviewView(int id)
         {
-            List orderOverviewView> = await _context.OrderOverviewView.FindAsync(id);
+
+            var orderOverviewView = _context.OrderOverviewView.Where(item => item.orderId == id);
+
 
             if (orderOverviewView == null)
             {
                 return NotFound();
             }
 
-            return orderOverviewView;
+            return await orderOverviewView.ToListAsync();
         }
     }
 }
