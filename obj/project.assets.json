@@ -7748,24 +7748,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\kaspe\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\simon_k33m7ql\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kaspe\\Projects\\dtu_RAWebAPI\\RAWebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\simon_k33m7ql\\source\\repos\\RAWebAPI\\RAWebAPI.csproj",
       "projectName": "RAWebAPI",
-      "projectPath": "C:\\Users\\kaspe\\Projects\\dtu_RAWebAPI\\RAWebAPI.csproj",
-      "packagesPath": "C:\\Users\\kaspe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kaspe\\Projects\\dtu_RAWebAPI\\obj\\",
+      "projectPath": "C:\\Users\\simon_k33m7ql\\source\\repos\\RAWebAPI\\RAWebAPI.csproj",
+      "packagesPath": "C:\\Users\\simon_k33m7ql\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\simon_k33m7ql\\source\\repos\\RAWebAPI\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\kaspe\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\simon_k33m7ql\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7773,7 +7768,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -7849,7 +7843,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }
