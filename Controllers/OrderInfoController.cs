@@ -27,42 +27,24 @@ namespace RAWebAPI.Controllers
             return await _context.OrderInfo.ToListAsync();
         }
 
-        // GET: api/OrderInfo/5
-        /* [HttpGet("{id}")]
-         public async Task<ActionResult<OrderInfo>> GetOrderInfo(int id)
-         {
-             var orderInfo = await _context.OrderInfo.FindAsync(id);
 
-             if (orderInfo == null)
-             {
-                 return NotFound();
-             }
-
-             return orderInfo;
-         }
-        */
-
-        // This function takes an  
         // GET: api/OrderInfo/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<OrderInfo>> GetOrderOverviewView(int tableID)
+        public async Task<ActionResult<OrderInfo>> GetOrderInfo(int id)
         {
 
-            var orderInfo = _context.OrderInfo.Where(item => item.tableId == tableID).Where(item => item.orderPayed == false);
+            // var orderInfo = from o in _context.OrderInfo where o.tableId==id where o.orderPayed==false select o; 
 
+            var orderInfo = _context.OrderInfo.Where(item => item.tableId == id && item.orderPayed == false);
 
             if (orderInfo == null)
             {
                 return NotFound();
             }
 
-            return await orderInfo.FirstAsync();
+            return await orderInfo.FirstOrDefaultAsync();
         }
     
-
-
-
-
 
 
     // PUT: api/OrderInfo/5

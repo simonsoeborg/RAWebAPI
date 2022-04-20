@@ -9,9 +9,10 @@ namespace RAWebAPI.Models
 
     public class OrderOverviewView
     {
+        [Key]
+        public int id { get; set; }
         public String name { get; set; }
         public int price { get; set; }
-        [Key]
         public int orderId { get; set; }
 
     }
