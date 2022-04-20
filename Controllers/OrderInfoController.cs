@@ -28,22 +28,46 @@ namespace RAWebAPI.Controllers
         }
 
         // GET: api/OrderInfo/5
+        /* [HttpGet("{id}")]
+         public async Task<ActionResult<OrderInfo>> GetOrderInfo(int id)
+         {
+             var orderInfo = await _context.OrderInfo.FindAsync(id);
+
+             if (orderInfo == null)
+             {
+                 return NotFound();
+             }
+
+             return orderInfo;
+         }
+        */
+
+        // This function takes an  
+        // GET: api/OrderInfo/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<OrderInfo>> GetOrderInfo(int id)
+        public async Task<ActionResult<OrderInfo>> GetOrderOverviewView(int tableID)
         {
-            var orderInfo = await _context.OrderInfo.FindAsync(id);
+
+            var orderInfo = _context.OrderInfo.Where(item => item.tableId == tableID).Where(item => item.orderPayed == false);
+
 
             if (orderInfo == null)
             {
                 return NotFound();
             }
 
-            return orderInfo;
+            return await orderInfo.FirstAsync();
         }
+    
 
-        // PUT: api/OrderInfo/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+
+
+
+
+
+    // PUT: api/OrderInfo/5
+    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+    [HttpPut("{id}")]
         public async Task<IActionResult> PutOrderInfo(int id, OrderInfo orderInfo)
         {
             if (id != orderInfo.id)
