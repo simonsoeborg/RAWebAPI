@@ -50,14 +50,18 @@ namespace RAWebAPI.Controllers
     // PUT: api/OrderInfo/5
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPut("{id}")]
-        public async Task<IActionResult> PutOrderInfo(int id, OrderInfo orderInfo)
+        public async Task<IActionResult> PutOrderInfo(int id)
         {
-            if (id != orderInfo.id)
-            {
-                return BadRequest();
-            }
 
-            _context.Entry(orderInfo).State = EntityState.Modified;
+            OrderInfo updatedInfo = _context.OrderInfo.SingleOrDefault(c => c.tableId == id && c.orderPayed == false);
+
+            if (updatedInfo == null)
+            {
+                return NotFound();
+            }
+            else updatedInfo.orderPayed = true;
+
+            _context.OrderInfo.Update(updatedInfo); 
 
             try
             {
@@ -74,7 +78,6 @@ namespace RAWebAPI.Controllers
                     throw;
                 }
             }
-
             return NoContent();
         }
 
