@@ -40,24 +40,56 @@ namespace RAWebAPI.Controllers
             {
                 return await _context.Authentication.ToListAsync();
             }
-            else
-            {
-                return NoContent();
-            }
+
+            return NoContent();
         }
 
-        // GET: api/Authentication/5
-        [HttpGet("{email}")]
-        public async Task<ActionResult<Authentication>> GetAuthentication(string email)
+        // GET: api/Authentication/
+        [HttpGet("{email}/{token}")]
+        public async Task<ActionResult<Authentication>> GetAuthentication(string email, string token)
         {
             var authentication = await _context.Authentication.FindAsync(email);
-
-            if (authentication == null)
+            // Decode JWT
+            var handler = new JwtSecurityTokenHandler();
+            var jsonToken = handler.ReadJwtToken(token);
+            // Check Role
+            var role = jsonToken.Claims.First(claim => claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role").Value;
+            // If Else
+            if (role == "admin")
             {
-                return NotFound();
+                return authentication;
             }
 
-            return authentication;
+            return NotFound();
+        }
+
+        [HttpPut("AuthenticatedUsers/{token}/{email}")]
+        public async Task<IActionResult> PutAuthUser(string email, Authentication authUser)
+        {
+            if (email != authUser.Email)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(authUser).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!AuthenticationExists(email))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
         }
 
         // POST: api/Authentication
