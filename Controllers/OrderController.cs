@@ -11,47 +11,47 @@ namespace RAWebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class resOrdersController : ControllerBase
+    public class OrderController : ControllerBase
     {
         private readonly DatabaseContext _context;
 
-        public resOrdersController(DatabaseContext context)
+        public OrderController(DatabaseContext context)
         {
             _context = context;
         }
 
-        // GET: api/resOrders
+        // GET: api/Order
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<resOrders>>> GetresOrders()
+        public async Task<ActionResult<IEnumerable<Order>>> GetOrder()
         {
-            return await _context.resOrders.ToListAsync();
+            return await _context.Order.ToListAsync();
         }
 
-        // GET: api/resOrders/5
+        // GET: api/Order/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<resOrders>> GetresOrders(int id)
+        public async Task<ActionResult<Order>> GetOrder(int id)
         {
-            var resOrders = await _context.resOrders.FindAsync(id);
+            var order = await _context.Order.FindAsync(id);
 
-            if (resOrders == null)
+            if (order == null)
             {
                 return NotFound();
             }
 
-            return resOrders;
+            return order;
         }
 
-        // PUT: api/resOrders/5
+        // PUT: api/Order/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutresOrders(int id, resOrders resOrders)
+        public async Task<IActionResult> PutOrder(int id, Order order)
         {
-            if (id != resOrders.Id)
+            if (id != order.id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(resOrders).State = EntityState.Modified;
+            _context.Entry(order).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace RAWebAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!resOrdersExists(id))
+                if (!OrderExists(id))
                 {
                     return NotFound();
                 }
@@ -72,36 +72,36 @@ namespace RAWebAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/resOrders
+        // POST: api/Order
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<resOrders>> PostresOrders(resOrders resOrders)
+        public async Task<ActionResult<Order>> PostOrder(Order order)
         {
-            _context.resOrders.Add(resOrders);
+            _context.Order.Add(order);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetresOrders", new { id = resOrders.Id }, resOrders);
+            return CreatedAtAction("GetOrder", new { id = order.id }, order);
         }
 
-        // DELETE: api/resOrders/5
+        // DELETE: api/Order/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteresOrders(int id)
+        public async Task<IActionResult> DeleteOrder(int id)
         {
-            var resOrders = await _context.resOrders.FindAsync(id);
-            if (resOrders == null)
+            var order = await _context.Order.FindAsync(id);
+            if (order == null)
             {
                 return NotFound();
             }
 
-            _context.resOrders.Remove(resOrders);
+            _context.Order.Remove(order);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool resOrdersExists(int id)
+        private bool OrderExists(int id)
         {
-            return _context.resOrders.Any(e => e.Id == id);
+            return _context.Order.Any(e => e.id == id);
         }
     }
 }

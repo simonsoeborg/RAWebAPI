@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using RAWebAPI.Models;
 
 namespace RAWebAPI.Controllers
@@ -19,6 +24,26 @@ namespace RAWebAPI.Controllers
         public AuthenticationController(DatabaseContext context)
         {
             _context = context;
+        }
+
+        // GET: api/Category
+        [HttpGet("AuthenticatedUsers/{token}")]
+        public async Task<ActionResult<IEnumerable<Authentication>>> GetAllUsers(string token)
+        {
+            // Decode JWT
+            var handler = new JwtSecurityTokenHandler();
+            var jsonToken = handler.ReadJwtToken(token);
+            // Check Role
+            var role = jsonToken.Claims.First(claim => claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role").Value;
+            // If Else
+            if (role == "admin")
+            {
+                return await _context.Authentication.ToListAsync();
+            }
+            else
+            {
+                return NoContent();
+            }
         }
 
         // GET: api/Authentication/5
@@ -38,7 +63,7 @@ namespace RAWebAPI.Controllers
         // POST: api/Authentication
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Auth>> PostAuthentication(Authentication authentication)
+        public async Task<ActionResult<string>> PostAuthentication(Authentication authentication)
         {
             HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
             if (await _context.Authentication.FindAsync(authentication.Email) == null)
@@ -59,10 +84,10 @@ namespace RAWebAPI.Controllers
                         throw;
                     }
                 }
-                return await GetAuth(authentication.Email);
+                return await CreateToken(authentication);
                 // return CreatedAtAction("PostAuthentication", new { id = authentication.Email }, authentication);
             }
-            return await GetAuth(authentication.Email);
+            return await CreateToken(authentication);
         }
 
         // GET: api/Authentication/Auth/email
@@ -98,6 +123,46 @@ namespace RAWebAPI.Controllers
         private bool AuthenticationExists(string id)
         {
             return _context.Authentication.Any(e => e.Email == id);
+        }
+
+        private async Task<string> CreateToken(Authentication authentication)
+        {
+            Authentication exists  = await _context.Authentication.FindAsync(authentication.Email);
+            if (exists == null)
+            {
+                throw new Exception("User role was not found in AuthController_CreateToken()!");
+            }
+            else
+            {
+                Auth authUser =  GetAuth(authentication.Email).Result.Value;
+                List<Claim> claims = new()
+                {
+                    new Claim(ClaimTypes.Name, authUser.Name),
+                    new Claim(ClaimTypes.Email, authUser.Email),
+                    new Claim(ClaimTypes.Role, authUser.Role),
+                    new Claim(ClaimTypes.NameIdentifier, authUser.Sub),
+                    new Claim(ClaimTypes.Uri, authUser.Picture),
+                    new Claim(ClaimTypes.SerialNumber, authUser.Pin.ToString())
+                };
+                    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+                        "hemmeligtPassword"));
+
+                    var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
+                    var token = new JwtSecurityToken(
+                        claims: claims,
+                        expires: DateTime.Now.AddDays(1),
+                        signingCredentials: credentials);
+
+                    var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+
+                    return jwt;
+            }
+        }
+        private static void CreateHash(string email, out byte[] emailHash)
+        {
+            using var hmac = new HMACSHA512();
+            emailHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(email));
         }
     }
 }
