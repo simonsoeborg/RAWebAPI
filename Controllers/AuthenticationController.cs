@@ -26,6 +26,26 @@ namespace RAWebAPI.Controllers
             _context = context;
         }
 
+        // GET: api/Category
+        [HttpGet("AuthenticatedUsers/{token}")]
+        public async Task<ActionResult<IEnumerable<Authentication>>> GetAllUsers(string token)
+        {
+            // Decode JWT
+            var handler = new JwtSecurityTokenHandler();
+            var jsonToken = handler.ReadJwtToken(token);
+            // Check Role
+            var role = jsonToken.Claims.First(claim => claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role").Value;
+            // If Else
+            if (role == "admin")
+            {
+                return await _context.Authentication.ToListAsync();
+            }
+            else
+            {
+                return NoContent();
+            }
+        }
+
         // GET: api/Authentication/5
         [HttpGet("{email}")]
         public async Task<ActionResult<Authentication>> GetAuthentication(string email)
