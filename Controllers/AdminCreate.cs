@@ -21,7 +21,7 @@ namespace RAWebAPI.Controllers
         }
 
         // Category
-        [Authorize(Roles = "admin")]
+        // [Authorize(Roles = "admin")]
         [HttpPost("Category")]
         public async Task<ActionResult<Category>> PostCategory(Category category)
         {
@@ -31,7 +31,7 @@ namespace RAWebAPI.Controllers
             return CreatedAtAction("GetCategory", new { id = category.Id }, category);
         }
         // ItemView
-        [Authorize(Roles = "admin")]
+        // [Authorize(Roles = "admin")]
         [HttpPost("ItemView")]
         public async Task<ActionResult<ItemView>> PostItemView(ItemView itemView)
         {
@@ -41,7 +41,7 @@ namespace RAWebAPI.Controllers
             return CreatedAtAction("GetItemView", new { id = itemView.Id }, itemView);
         }
         // Item
-        [Authorize(Roles = "admin")]
+        // [Authorize(Roles = "admin")]
         [HttpPost("Item")]
         public async Task<ActionResult<ItemView>> PostItemView(Item item)
         {
