@@ -40,6 +40,16 @@ namespace RAWebAPI.Controllers
 
             return CreatedAtAction("GetItemView", new { id = itemView.Id }, itemView);
         }
+        // Item
+        [Authorize(Roles = "admin")]
+        [HttpPost("Item")]
+        public async Task<ActionResult<ItemView>> PostItemView(Item item)
+        {
+            _context.Item.Add(item);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetItemView", new { id = item.Id }, item);
+        }
         // Order
         [HttpPost("Order")]
         public async Task<ActionResult<Order>> PostOrder(Order order)

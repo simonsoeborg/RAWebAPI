@@ -10,6 +10,8 @@ namespace RAWebAPI.DBContext
 
         public DbSet<RAWebAPI.Models.ItemView> ItemView { get; set; }
 
+        public DbSet<RAWebAPI.Models.Item> Item { get; set; }
+
         public DbSet<RAWebAPI.Models.Roles> Roles { get; set; }
 
         public DbSet<RAWebAPI.Models.Auth> Auth { get; set; }
