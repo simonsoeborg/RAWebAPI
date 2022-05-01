@@ -22,7 +22,7 @@ namespace RAWebAPI.Controllers
             _context = context;
         }
 
-        [Authorize(Roles = "admin")]
+        // [Authorize(Roles = "admin")]
         [HttpDelete("Category/{id}")] // Skal have admin token perms
         public async Task<IActionResult> DeleteCategory(int id)
         {
@@ -39,7 +39,7 @@ namespace RAWebAPI.Controllers
         }
 
         // ItemView
-        [Authorize(Roles = "admin")]
+        // [Authorize(Roles = "admin")]
         [HttpDelete("ItemView/{id}")] // Skal have admin token perms
         public async Task<IActionResult> DeleteItemView(int id)
         {
@@ -56,7 +56,7 @@ namespace RAWebAPI.Controllers
         }
 
         // Order
-        [Authorize(Roles = "admin")]
+        // [Authorize(Roles = "admin")]
         [HttpDelete("Order/{id}")] // Skal have admin token perms
         public async Task<IActionResult> DeleteOrder(int id)
         {
@@ -73,7 +73,7 @@ namespace RAWebAPI.Controllers
         }
 
         // Order Info
-        [Authorize(Roles = "admin")]
+        // [Authorize(Roles = "admin")]
         [HttpDelete("OrderInfo/{id}")] // Skal have admin token perms
         public async Task<IActionResult> DeleteOrderInfo(int id)
         {

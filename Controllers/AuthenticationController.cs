@@ -29,7 +29,7 @@ namespace RAWebAPI.Controllers
         }
 
         // GET: api/Category
-        [Authorize(Roles = "admin")]
+        // [Authorize(Roles = "admin")]
         [HttpGet("AuthenticatedUsers/{token}")]
         public async Task<ActionResult<IEnumerable<Authentication>>> GetAllUsers(string token)
         {
@@ -48,7 +48,7 @@ namespace RAWebAPI.Controllers
         }
 
         // GET: api/Authentication/
-        [Authorize(Roles = "admin")]
+        // [Authorize(Roles = "admin")]
         [HttpGet("{email}/{token}")]
         public async Task<ActionResult<Authentication>> GetAuthentication(string email, string token)
         {
@@ -67,7 +67,7 @@ namespace RAWebAPI.Controllers
             return NotFound();
         }
 
-        [Authorize(Roles = "admin")]
+        // [Authorize(Roles = "admin")]
         [HttpPut("AuthenticatedUsers/{token}/{email}")]
         public async Task<IActionResult> PutAuthUser(string email, Authentication authUser)
         {
@@ -99,7 +99,7 @@ namespace RAWebAPI.Controllers
 
         // POST: api/Authentication
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [Authorize(Roles = "admin")]
+        // [Authorize(Roles = "admin")]
         [HttpPost]
         public async Task<ActionResult<string>> PostAuthentication(Authentication authentication)
         {
@@ -129,7 +129,7 @@ namespace RAWebAPI.Controllers
         }
 
         // GET: api/Authentication/Auth/email
-        [Authorize(Roles = "admin")]
+        // [Authorize(Roles = "admin")]
         [HttpGet("Auth/{email}")]
         public async Task<ActionResult<Auth>> GetAuth(string email)
         {
@@ -144,7 +144,7 @@ namespace RAWebAPI.Controllers
         }
 
         // DELETE: api/Authentication/5
-        [Authorize(Roles = "admin")]
+        // [Authorize(Roles = "admin")]
         [HttpDelete("{email}")]
         public async Task<IActionResult> DeleteAuthentication(string email)
         {
