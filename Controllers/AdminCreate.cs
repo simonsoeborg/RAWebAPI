@@ -28,7 +28,7 @@ namespace RAWebAPI.Controllers
             _context.Category.Add(category);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCategory", new { id = category.Id }, category);
+            return CreatedAtAction("PostCategory", new { id = category.Id }, category);
         }
         // ItemView
         // [Authorize(Roles = "admin")]
@@ -38,17 +38,17 @@ namespace RAWebAPI.Controllers
             _context.ItemView.Add(itemView);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetItemView", new { id = itemView.Id }, itemView);
+            return CreatedAtAction("PostItemView", new { id = itemView.Id }, itemView);
         }
         // Item
         // [Authorize(Roles = "admin")]
         [HttpPost("Item")]
-        public async Task<ActionResult<ItemView>> PostItemView(Item item)
+        public async Task<ActionResult<Item>> PostItem(Item item)
         {
             _context.Item.Add(item);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetItemView", new { id = item.Id }, item);
+            return CreatedAtAction("PostItem", new { id = item.Id }, item);
         }
         // Order
         [HttpPost("Order")]
@@ -57,7 +57,7 @@ namespace RAWebAPI.Controllers
             _context.Order.Add(order);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetOrder", new { id = order.id }, order);
+            return CreatedAtAction("PostOrder", new { id = order.id }, order);
         }
 
     // Order Info
@@ -67,7 +67,7 @@ namespace RAWebAPI.Controllers
             _context.OrderInfo.Add(orderInfo);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetOrderInfo", new { id = orderInfo.id }, orderInfo);
+            return CreatedAtAction("PostOrderInfo", new { id = orderInfo.id }, orderInfo);
         }
     }
 }
