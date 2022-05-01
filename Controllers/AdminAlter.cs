@@ -23,7 +23,7 @@ namespace RAWebAPI.Controllers
         }
 
         // Category
-        [Authorize(Roles = "admin")]
+        // // [Authorize(Roles = "admin")]
         [HttpPut("Category/{id}")] // Skal have admin token perms
         public async Task<IActionResult> PutCategory(int id, Category category)
         {
@@ -59,7 +59,7 @@ namespace RAWebAPI.Controllers
         }
 
     // ItemView
-        [Authorize(Roles = "admin")]
+        // // // [Authorize(Roles = "admin")]
         [HttpPut("ItemView/{id}")] // Skal have admin token perms
         public async Task<IActionResult> PutItemView(int id, ItemView itemView)
         {
