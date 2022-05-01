@@ -14,7 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using RAWebAPI.Models;
+using RAWebAPI.DBContext;
 
 namespace RAWebAPI
 {
