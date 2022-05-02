@@ -23,7 +23,7 @@ namespace RAWebAPI.Controllers
         }
 
     // Category
-        // // // [Authorize(Roles = "waiter")]
+        [Authorize(Roles = "waiter")]
         [HttpGet("Category")]
         public async Task<ActionResult<IEnumerable<Category>>> GetCategory()
         {

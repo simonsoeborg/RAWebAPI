@@ -15,6 +15,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using RAWebAPI.DBContext;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace RAWebAPI
 {
@@ -56,6 +58,14 @@ namespace RAWebAPI
             {
                 options.Authority = "https://simonsoeborg.eu.auth0.com/";
                 options.Audience = "http://api.uglyrage.com";
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
+                .GetBytes("hemmeligtPassword")),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
             });
         }
 
@@ -75,6 +85,7 @@ namespace RAWebAPI
             // app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
@@ -83,7 +94,6 @@ namespace RAWebAPI
                 endpoints.MapControllers();
             });
 
-            app.UseAuthentication();
 
         }
     }
