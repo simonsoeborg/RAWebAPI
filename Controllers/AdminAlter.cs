@@ -94,6 +94,42 @@ namespace RAWebAPI.Controllers
             return _context.ItemView.Any(e => e.Id == id);
         }
 
+        // Item
+        // // // [Authorize(Roles = "admin")]
+        [HttpPut("Item/{id}")] // Skal have admin token perms
+        public async Task<IActionResult> PutItem(int id, Item item)
+        {
+            if (id != item.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(item).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ItemExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        private bool ItemExists(int id)
+        {
+            return _context.Item.Any(e => e.Id == id);
+        }
+
         // Order
         [HttpPut("Order/{id}")] // Skal have admin token perms
         public async Task<IActionResult> PutOrder(int id, Order order)
