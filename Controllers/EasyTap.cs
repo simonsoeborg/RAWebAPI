@@ -63,7 +63,20 @@ namespace RAWebAPI.Controllers
             return itemView;
         }
 
-    // Order
+        [HttpGet("Item/{id}")]
+        public async Task<ActionResult<Item>> GetItem(int id)
+        {
+            var item = await _context.Item.FindAsync(id);
+
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            return item;
+        }
+
+        // Order
         [HttpGet("Order")]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrder()
         {
