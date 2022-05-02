@@ -55,6 +55,23 @@ namespace RAWebAPI.Controllers
             return NoContent();
         }
 
+        // Item
+        // [Authorize(Roles = "admin")]
+        [HttpDelete("Item/{id}")] // Skal have admin token perms
+        public async Task<IActionResult> DeleteItem(int id)
+        {
+            var item = await _context.Item.FindAsync(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            _context.Item.Remove(item);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
         // Order
         // [Authorize(Roles = "admin")]
         [HttpDelete("Order/{id}")] // Skal have admin token perms
